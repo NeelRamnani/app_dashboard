@@ -29,7 +29,7 @@ const Signup = () => {
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input type="password" id="password" name="password" required   placeholder='asbbfdbA@#'/>
-                    <a href="">forgot password?</a>
+                    {/* <a href="">Use strong password</a> */}
                   </div>
                
                   <div className="form-group">

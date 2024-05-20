@@ -1,7 +1,36 @@
-import React from 'react';
-import Nav from '../Components/HomeScreenLayout/Nav';
-<Nav/>
+import React, { useState } from 'react';
+import axios from 'axios';
+
+
 const SupportContact = () => {
+
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/contact', formData);
+      if (response.status === 200) {
+        alert('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' }); // Clear the form after successful submission
+      }
+    } catch (error) {
+      console.error('There was an error sending the message!', error);
+    }
+  };
+
   const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -73,19 +102,19 @@ const SupportContact = () => {
   return (
    
     <div style={containerStyle}>
-      <form style={formStyle}>
+      <form style={formStyle}  onSubmit={handleSubmit}>
         <h2 style={headerStyle}>Contact Us</h2>
         <div style={formGroupStyle}>
           <label htmlFor="name" style={labelStyle}>Name</label>
-          <input type="text" id="name" name="name" required style={inputStyle} />
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}  required style={inputStyle} />
         </div>
         <div style={formGroupStyle}>
           <label htmlFor="email" style={labelStyle}>Email</label>
-          <input type="email" id="email" name="email" required style={inputStyle} />
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}   required style={inputStyle} />
         </div>
         <div style={formGroupStyle}>
           <label htmlFor="message" style={labelStyle}>Message</label>
-          <textarea id="message" name="message" rows="4" required style={textareaStyle}></textarea>
+          <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows="4" required style={textareaStyle}></textarea>
         </div>
         <button
           type="submit"

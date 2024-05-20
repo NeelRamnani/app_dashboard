@@ -1,35 +1,45 @@
-import React from 'react';
-import './login.css';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const ForgotPassword = () => {
-    return (
-       
-            <div className="login-container">
-              <div className="image-container">
-                <img src="https://leonardo-cdn.b-cdn.net/wp-content/uploads/2023/07/Default_dodge_challenger_in_a_cyber_punk_landscape_0_7b2c7227-b643-4ea4-8393-c6036723fb99_1.jpeg" alt="Login Visual" className="login-image" />
-              </div>
-              <div className="form-container">
-              <Link to='/login'><button className="back-button">Back</button></Link>
-                <h2 className="login-title">Forgot Password?</h2>
-                <form>
-                  <div className="form-group">
-                    <label htmlFor="email">Enter your email</label>
-                    <input type="text" id="email" name="email" required  placeholder='m@example.com'/>
-                  </div>
-              
-             
-            
-               
-                  <button type="submit" className="submit-button">Reset Password</button>
-                  <br></br>
-                  <center ><Link to='/contact'>need help? contact support </Link></center>
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
 
-                </form>
-              </div>
-            </div>
-          );
-        }
-        
-  export default ForgotPassword;
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/signup', formData);
+      console.log(response.data);
+      // Assuming you want to log the response
+      // Clear form after successful signup
+      setFormData({ username: '', email: '', password: '' });
+      alert('User signed up successfully');
+    } catch (error) {
+      console.error(error.response.data.error);
+      alert('Error signing up. Please try again later.');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+  );
+};
+
+export default ForgotPassword;

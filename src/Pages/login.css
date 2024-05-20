@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: row;
     height: 100vh;
+    
   }
   
   .image-container {
@@ -20,7 +21,35 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+ 
   }
+  .password-group {
+    position: relative;
+}
+
+.password-input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+}
+
+.password-input-container input {
+    flex: 1;
+    padding-right: 40px; /* Space for the toggle button */
+}
+
+.toggle-password-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle-password-button:focus {
+    outline: none;
+}
   
   .form-container {
     flex: 1;
@@ -32,6 +61,7 @@ body {
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
+    width: 100px;
   }
   
   .back-button {
@@ -55,6 +85,7 @@ body {
   .form-group {
     margin-bottom: 15px;
     width: 100%;
+   
   }
   
   .form-group label {
@@ -65,7 +96,7 @@ body {
   
   .form-group input {
     width: 100%;
-    padding: 15px;
+    padding: 25px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
