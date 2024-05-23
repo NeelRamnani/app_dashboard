@@ -14,7 +14,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '', // Replace with your MySQL password
+  password: '', 
   database: 'imaginai'
 });
 
@@ -74,44 +74,77 @@ app.post('/api/signup', (req, res) => {
 app.post('/api/contact', (req, res) => {
   const { name, email, message } = req.body;
 
-  // Insert the contact form data into the database
-  const query = 'INSERT INTO contact (name, email, message) VALUES (?, ?, ?)';
-  connection.query(query, [name, email, message], (err, result) => {
+  const sql = 'INSERT INTO contacts  (name, email, message) VALUES (?, ?, ?)';
+  db.query(sql, [name, email, message], (err, result) => {
     if (err) {
       console.error(err);
-      res.status(500).send('Error submitting contact form');
+      res.status(500).send('Error saving contact');
     } else {
-      res.status(200).send('Contact form submitted successfully');
+      res.status(200).send('Contact saved successfully');
     }
   });
 });
 
 
-
 ////
+
 // Login endpoint
 app.post('/api/login', async (req, res) => {
-  const [username, password] = req.body.split(':');
+  const { username, password } = req.body;
+
   try {
-      const request = new sql.Request();
-      request.input('username', sql.VarChar, username);
-      const result = await request.query('SELECT * FROM users WHERE username = @username');
-      
-      if (result.recordset.length > 0) {
-          const user = result.recordset[0];
-          const validPassword = await bcrypt.compare(password, user.password);
-          if (validPassword) {
-              res.status(200).send('Login successful');
-          } else {
-              res.status(401).send('Invalid password');
-          }
-      } else {
-          res.status(404).send('User not found');
+    const query = 'SELECT * FROM users WHERE username = ?';
+    db.query(query, [username], async (err, results) => {
+      if (err) {
+        console.error('Error fetching user:', err);
+        return res.status(500).json({ error: 'Internal server error' });
       }
+
+      if (results.length === 0) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+
+      const user = results[0];
+      const validPassword = await bcrypt.compare(password, user.password);
+      console.log('Valid password:', validPassword); // Add this line
+
+      if (!validPassword) {
+        return res.status(401).json({ error: 'Invalid password' });
+      }
+
+      // ... (existing code)
+    });
   } catch (err) {
-      console.error('Error during login:', err);
-      res.status(500).send('Internal server error');
+    console.error('Error during login:', err);
+    res.status(500).json({ error: 'Internal server error' });
   }
+});
+const jwt = require('jsonwebtoken');
+
+// Middleware function to verify JWT
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return res.status(401).json({ error: 'Authorization header missing' });
+  }
+
+  const token = authHeader.split(' ')[1]; // Extract the token from the "Authorization: Bearer <token>" header
+
+  jwt.verify(token, 'dc7b6d0fd1645f18de913072d5e1a1d97e7b85e4954a503747ec2aae988ea9d7dcca15a234e927eb5fe597e219aff40404a42a163ffe6254fe7eacd624a79dd6', (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: 'Invalid or expired token' });
+    }
+
+    req.userId = decoded.userId; // Add the userId to the request object
+    next(); // Proceed to the next middleware or route handler
+  });
+};
+
+// Apply the verifyToken middleware to protected routes
+app.get('/api/protected', verifyToken, (req, res) => {
+  // This route will be accessible only with a valid JWT token
+  res.json({ message: 'Access granted' });
 });
 // Get users endpoint
 // app.get('/api/users', (req, res) => {

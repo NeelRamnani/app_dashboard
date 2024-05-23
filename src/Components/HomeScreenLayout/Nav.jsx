@@ -45,7 +45,7 @@ const Nav = () => {
             </li>
            
             <li className="nav-item">
-              <Link className="nav-link" to='/neel'>About us</Link>
+              <Link className="nav-link" to='/aboutus'>About us</Link>
             </li>
             {/* Features Page Link */}
            

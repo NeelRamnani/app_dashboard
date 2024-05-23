@@ -5,32 +5,33 @@ import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Link } from 'react-router-dom';
 import './login.css';
-import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
 
 const Login = () => {
-    const [identifier, setIdentifier] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-  
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        const response = await axios.post('http://localhost:5000/api/login', {
-          identifier,
-          password
-        });
-        setMessage(response.data.message);
-      } catch (error) {
-        if (error.response) {
-          setMessage(error.response.data.error);
-        } else {
-          setMessage('An error occurred. Please try again later.');
-        }
-      }
-    };
+    const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', { username, password });
+      const { token } = response.data;
+
+      // Store the token in localStorage or other secure storage
+      localStorage.setItem('token', token);
+
+      // Redirect or perform other actions after successful login
+      console.log('Login successful');
+    } catch (err) {
+      setError(err.response.data.error || 'Login failed');
+    }
+  };
+
+
 
     return (
         <div className="login-container">
@@ -45,8 +46,9 @@ const Login = () => {
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input type="text"  
-                        value={identifier}
-                        onChange={(e) => setIdentifier(e.target.value)}placeholder='m@example.com' />
+                         id="username"
+                         value={username}
+                         onChange={(e) => setUsername(e.target.value)}placeholder='m@example.com' />
                     </div>
 
                     <div className="form-group password-group">
@@ -55,13 +57,12 @@ const Login = () => {
                             <input
                                 type= "password"
                                 id="password"
-                            
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 placeholder='john@#75'
                             />
-                            {message && <p>{message}</p>}
+                           {error && <p>{error}</p>}
                             {/* <button
                                 type="button"
                                 className="toggle-password-button"

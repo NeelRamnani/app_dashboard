@@ -11,12 +11,14 @@ import Contact from './Pages/Contact';
 import Documentation from './Pages/Documentation';
 import UserSetting from './Pages/UserSetting';
 import HomeScreen from './Pages/HomeScreen';
-import Login from './Pages/Login';
+import Login from './Auth/Login';
 import Nav from '../src/Components/HomeScreenLayout/Nav'
 import Foot from '../src/Components/HomeScreenLayout/Foot'
-import Signup from './Pages/Signup';
-import ForgotPassword from './Pages/ForgotPassword';
+import Signup from './Auth/Signup';
+import ForgotPassword from './Auth/ForgotPassword';
 import SupportContact from './Pages/SupportContact';
+import PromptSuggest from './Pages/PromptSuggest';
+import AboutUs from './Pages/AboutUs';
 const Layout = ({ children }) => {
   return (
     <>
@@ -41,8 +43,11 @@ const HomeScreenLayout = ({ children ,children3}) => {
 function App() {
   return (
     <BrowserRouter>
+   
       <Routes>
+  
         <Route path='/' element={<HomeScreenLayout><HomeScreen /></HomeScreenLayout>} />
+        <Route path='/aboutus'  element={<HomeScreenLayout><AboutUs /></HomeScreenLayout>} />
         <Route path='/ForgotPassword' element={<ForgotPassword /> }/>
         <Route path='/login' element={<loginLayout><Login /></loginLayout>} />
         <Route path='/SupportContact' element={<HomeScreenLayout><SupportContact /></HomeScreenLayout>} />
@@ -53,6 +58,8 @@ function App() {
         <Route path='/Contact' element={<Layout><Contact /></Layout>} />
         <Route path='/ImageGenerate' element={<Layout><ImageGenerate /></Layout>} />
         <Route path='/Dashboard' element={<Layout><Dashboard /></Layout>} />
+        <Route path='/PromptSuggest' element={<Layout><PromptSuggest /></Layout>} />
+
 
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,29 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SupportContact = () => {
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post('http://localhost:5000/api/contact', { name, email, message });
+      toast.success('Contact submitted successfully');
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err) {
+      console.error(err);
+      toast.error('Error submitting contact');
+    }
+  };
   const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -76,21 +95,26 @@ const SupportContact = () => {
   return (
    
     <div style={containerStyle}>
-      <form style={formStyle} >
+      <form style={formStyle} onSubmit={handleSubmit}>
         <h2 style={headerStyle}>Contact Us</h2>
         <div style={formGroupStyle}>
           <label htmlFor="name" style={labelStyle}>Name</label>
-          <input type="text" id="name" name="name"  required style={inputStyle} />
+          <input type="text" id="name" value={name}
+          onChange={(e) => setName(e.target.value)}  required style={inputStyle} />
         </div>
         <div style={formGroupStyle}>
           <label htmlFor="email" style={labelStyle}>Email</label>
-          <input type="email" id="email" name="email"   required style={inputStyle} />
+          <input type="email" id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
         </div>
         <div style={formGroupStyle}>
           <label htmlFor="message" style={labelStyle}>Message</label>
           <textarea id="message" 
          
-          required rows="4"  style={textareaStyle}></textarea>
+          required rows="4" 
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}  style={textareaStyle}></textarea>
         </div>
         <button
           type="submit"
@@ -101,6 +125,7 @@ const SupportContact = () => {
           Send
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

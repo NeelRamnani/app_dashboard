@@ -120,12 +120,19 @@ const Navbar = () => {
           <div className="nav_group">
             <h2 className="group__title">User Tools</h2>
             <ul className="group__list">
+            <li>
+                <Link to='/promptsuggest' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
+                  <span className="icon"><img src="svg/image.svg" alt className="fn__svg" /></span>
+                  <span className="text">Promp Suggestion</span>
+                  </Link>
+              </li>
               <li>
                 <Link to='/ImageGenerate' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
                   <span className="icon"><img src="svg/image.svg" alt className="fn__svg" /></span>
                   <span className="text">Image Generation</span>
                   </Link>
               </li>
+            
             </ul>
           </div>
           {/* !#2 navigation group */}
