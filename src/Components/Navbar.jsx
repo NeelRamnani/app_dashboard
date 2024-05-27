@@ -1,6 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import getUserDetails from '../Components/getUserDetails';
+import logout from '../Components/logout'; 
+
+
 const Navbar = () => {
+
+ 
+  const [userName, setUserName] = useState('');
+ 
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const user = await getUserDetails();
+      if (user) {
+        setUserName(user.name); // Assuming 'name' is the field containing the user's name
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+ 
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login'); // Redirect to login page
+  };
+  
   return (
     <div className="ImaginAi_fn_wrapper">
     <div className="ImaginAi_fn_wrap">
@@ -47,8 +76,8 @@ const Navbar = () => {
                     <img src="img/user/user.jpg" alt />
                   </div>
                   <div className="user_info">
-                    <h2 className="user_name">Caden Smith<span>Free</span></h2>
-                    <p><a href="mailto:cadmail@gmail.com" className="user_email">cadmail@gmail.com</a></p>
+                  {userName && <li>Welcome, {userName}</li>}
+                  {userName && <li>Welcome, {userName}</li>}
                   </div>
                 </div>
                 <div className="user_nav">
@@ -158,12 +187,7 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <li>
-                <a href="sign-in.html" className="fn__tooltip menu__item" data-position="right" title="Log Out">
-                  <span className="icon"><img src="svg/logout.svg" alt className="fn__svg" /></span>
-                  <span className="text">Log Out</span>
-                </a>
-              </li>
+              <button onClick={handleLogout}>Logout please</button>
             </ul>
           </div>
           {/* !#3 navigation group */}

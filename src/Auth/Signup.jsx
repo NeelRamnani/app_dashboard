@@ -8,10 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    name: ''
   });
   const navigate = useNavigate();
 
@@ -23,10 +22,6 @@ const Signup = () => {
     let isValid = true;
     let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
-    if (!formData.username) {
-      toast.error('Username is required.');
-      isValid = false;
-    }
     if (!formData.email || !emailPattern.test(formData.email)) {
       toast.error('Valid email is required.');
       isValid = false;
@@ -35,8 +30,8 @@ const Signup = () => {
       toast.error('Password must be at least 8 characters long.');
       isValid = false;
     }
-    if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match.');
+    if (!formData.name) {
+      toast.error('Name is required.');
       isValid = false;
     }
 
@@ -48,7 +43,7 @@ const Signup = () => {
     if (!validate()) return;
 
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', formData, {
+      const response = await axios.post('http://localhost:3000/signup', { user: formData }, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -57,7 +52,7 @@ const Signup = () => {
       if (response && response.data) {
         console.log(response.data);
         // Clear form after successful signup
-        setFormData({ username: '', email: '', password: '', confirmPassword: '' });
+        setFormData({ email: '', password: '', name: '' });
         toast.success("Account Created Successfully!");
         // Redirect to login page after a short delay to allow toast notification to show
         setTimeout(() => navigate('/login'), 2000); // 2 seconds delay
@@ -88,19 +83,6 @@ const Signup = () => {
         <h2 className="login-title">Signup</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-              placeholder="john"
-            />
-          </div>
-
-          <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -127,16 +109,18 @@ const Signup = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label htmlFor="name">Userame</label>
             <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               required
+              placeholder="John"
             />
           </div>
+
           <button type="submit" className="submit-button">
             Signup
           </button>
