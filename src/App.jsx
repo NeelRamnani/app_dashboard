@@ -5,7 +5,6 @@ import Footer from './Components/Footer';
 import Dashboard from './Pages/Dashboard';
 import './assets/css/style8a54.css';
 import './assets/css/plugins8a54.css';
-
 import ImageGenerate from './Pages/ImageGenerate';
 import Faq from './Pages/Faq';
 import Contact from './Pages/Contact';
