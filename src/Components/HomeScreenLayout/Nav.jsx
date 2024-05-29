@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import '../../assets/css/another.css'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-
 const Nav = () => {
   return (
     <div><div className="fixed top-0 -z-10">

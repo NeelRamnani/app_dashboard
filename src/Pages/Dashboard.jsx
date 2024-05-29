@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 const Home = () => {
+  
   return (
   <div><div className="ImaginAi_fn_fixedsub">
     <ul />
@@ -32,11 +33,11 @@ const Home = () => {
                       <div className="item">
                         <Link to="/ImageGenerate">
                           <span className="icon">
-                            <img src="svg/image.svg" alt className="fn__svg" />
+                            <img src="svg/image.svg"  className="fn__svg" />
                           </span>
                           <h2 className="title">Image Generation</h2>
                           <p className="desc">This field of AI combines deep learning algorithms and generative models to create new images that resemble real-world photographs or exhibit creative and imaginative qualities.</p>
-                          <span className="arrow"><img src="svg/arrow.svg" alt className="fn__svg" /></span>
+                          <span className="arrow"><img src="svg/arrow.svg"  className="fn__svg" /></span>
                         </Link>
                       </div>
                     </li>

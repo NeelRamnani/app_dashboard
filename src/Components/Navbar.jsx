@@ -1,35 +1,23 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import getUserDetails from '../Components/getUserDetails';
-import logout from '../Components/logout'; 
+import './init8a54';
+
 
 
 const Navbar = () => {
 
- 
-  const [userName, setUserName] = useState('');
- 
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      const user = await getUserDetails();
-      if (user) {
-        setUserName(user.name); // Assuming 'name' is the field containing the user's name
-      }
-    };
-
-    fetchUserDetails();
-  }, []);
-
- 
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login'); // Redirect to login page
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem('token');
+
+    // Redirect to the login page
+    navigate('/login');
   };
-  
+
   return (
     <div className="ImaginAi_fn_wrapper">
     <div className="ImaginAi_fn_wrap">
@@ -50,8 +38,8 @@ const Navbar = () => {
             {/* Full Screen (bar item) */}
             <div className="bar__item bar__item_fullscreen">
               <a href="#" className="item_opener fn__tooltip" title="Full Screen">
-                <img src="svg/fullscreen.svg" alt className="fn__svg f_screen" />
-                <img src="svg/smallscreen.svg" alt className="fn__svg s_screen" />
+                <img src="svg/fullscreen.svg" className="fn__svg f_screen" />
+                <img src="svg/smallscreen.svg"  className="fn__svg s_screen" />
               </a>
             </div>
             {/* !Full Screen (bar item) */}
@@ -60,24 +48,23 @@ const Navbar = () => {
             {/* Site Skin (bar item) */}
             <div className="bar__item bar__item_skin">
               <a href="#" className="item_opener fn__tooltip" title="Dark/Light">
-                <img src="svg/sun.svg" alt className="fn__svg light_mode" />
-                <img src="svg/moon.svg" alt className="fn__svg dark_mode" />
+                <img src="svg/sun.svg"  className="fn__svg light_mode" />
+                <img src="svg/moon.svg"  className="fn__svg dark_mode" />
               </a>
             </div>
             {/* !Site Skin (bar item) */}
             {/* User (bar item) */}
             <div className="bar__item bar__item_user">
               <a href="#" className="user_opener fn__tooltip" title="User Profile">
-                <img src="img/user/user.jpg" alt />
+                <img src="img/user/user.jpg"  />
               </a>
               <div className="item_popup" data-position="right">
                 <div className="user_profile">
                   <div className="user_img">
-                    <img src="img/user/user.jpg" alt />
+                    <img src="img/user/user.jpg"  />
                   </div>
                   <div className="user_info">
-                  {userName && <li>Welcome, {userName}</li>}
-                  {userName && <li>Welcome, {userName}</li>}
+                  
                   </div>
                 </div>
                 <div className="user_nav">
@@ -85,15 +72,15 @@ const Navbar = () => {
                   
                     <li>
                     <Link to="/UserSetting">
-                        <span className="icon"><img src="svg/setting.svg" alt className="fn__svg" /></span>
+                        <span className="icon"><img src="svg/setting.svg"  className="fn__svg" /></span>
                         <span className="text">Settings</span>
                         </Link>
                     </li>
                    
                     <li>
                       <a href="sign-in.html">
-                        <span className="icon"><img src="svg/logout.svg" alt className="fn__svg" /></span>
-                        <span className="text">Log Out</span>
+                        <span className="icon"><img src="svg/logout.svg"  className="fn__svg" /></span>
+                        <button className='text' onClick={handleLogout}>Logout</button>
                       </a>
                     </li>
                   </ul>
@@ -113,19 +100,19 @@ const Navbar = () => {
         <div className="leftpanel_logo">
           <Link to="/" className="fn_logo">
             <span className="full_logo">
-              <img src="img/logo-desktop-full.png" alt className="desktop_logo" />
-              <img src="img/logo-retina-full.png" alt className="retina_logo" />
+              <img src="img/logo-desktop-full.png"  className="desktop_logo" />
+              <img src="img/logo-retina-full.png"  className="retina_logo" />
             </span>
             <span className="short_logo">
-              <img src="img/logo-desktop-mini.png" alt className="desktop_logo" />
-              <img src="img/logo-retina-mini.png" alt className="retina_logo" />
+              <img src="img/logo-desktop-mini.png"  className="desktop_logo" />
+              <img src="img/logo-retina-mini.png"  className="retina_logo" />
             </span>
           </Link>
           <a href="#" className="fn__closer fn__icon_button desktop_closer">
-            <img src="svg/arrow.svg" alt className="fn__svg" />
+            <img src="svg/arrow.svg"  className="fn__svg" />
           </a>
           <a href="#" className="fn__closer fn__icon_button mobile_closer">
-            <img src="svg/arrow.svg" alt className="fn__svg" />
+            <img src="svg/arrow.svg"  className="fn__svg" />
           </a>
         </div>
         {/* !logo (left panel) */}
@@ -137,7 +124,7 @@ const Navbar = () => {
             <ul className="group__list">
               <li>
                 <Link to='/' className="fn__tooltip active menu__item" data-position="right" title="Home">
-                  <span className="icon"><img src="svg/home.svg" alt className="fn__svg" /></span>
+                  <span className="icon"><img src="svg/home.svg"  className="fn__svg" /></span>
                   <span className="text">Home</span>
                 </Link>
               </li>
@@ -151,13 +138,13 @@ const Navbar = () => {
             <ul className="group__list">
             <li>
                 <Link to='/promptsuggest' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
-                  <span className="icon"><img src="svg/image.svg" alt className="fn__svg" /></span>
+                  <span className="icon"><img src="svg/image.svg"  className="fn__svg" /></span>
                   <span className="text">Promp Suggestion</span>
                   </Link>
               </li>
               <li>
                 <Link to='/ImageGenerate' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
-                  <span className="icon"><img src="svg/image.svg" alt className="fn__svg" /></span>
+                  <span className="icon"><img src="svg/image.svg"  className="fn__svg" /></span>
                   <span className="text">Image Generation</span>
                   </Link>
               </li>
@@ -171,9 +158,9 @@ const Navbar = () => {
             <ul className="group__list">
               <li className="menu-item-has-children">
                 <a href="video-generation.html" className="fn__tooltip menu__item" title="FAQ & Help" data-position="right">
-                  <span className="icon"><img src="svg/question.svg" alt className="fn__svg" /></span>
+                  <span className="icon"><img src="svg/question.svg"  className="fn__svg" /></span>
                   <span className="text">FAQ &amp; Help</span>
-                  <span className="trigger"><img src="svg/arrow.svg" alt className="fn__svg" /></span>
+                  <span className="trigger"><img src="svg/arrow.svg"  className="fn__svg" /></span>
                 </a>
                 <ul className="sub-menu">
                   <li>
@@ -187,7 +174,13 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <button onClick={handleLogout}>Logout please</button>
+              <li>
+                <a className="fn__tooltip menu__item" data-position="right" title="Image Generation">
+                <span className="icon"><img src="svg/logout.svg"  className="fn__svg" /></span>
+                  <button className='text' onClick={handleLogout}>Logout</button>
+                  </a>
+              </li>
+             
             </ul>
           </div>
           {/* !#3 navigation group */}

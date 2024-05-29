@@ -18,8 +18,9 @@ const Login = () => {
       const response = await axios.post('http://localhost:3000/login', {
         user: { email, password },
       });
-      const { token } = response.data;
-
+      const  token  = response.headers.authorization;
+      // console.log(response.headers.authorization)
+  
       // Store the token in localStorage or other secure storage
       localStorage.setItem('token', token);
 

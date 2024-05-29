@@ -37,34 +37,34 @@ const HomeScreen = () => {
                 <div className="marquee grid grid-cols-2 gap-6">
                   <div className="relative gap-6 m-auto flex flex-col overflow-hidden">
                     <div className="marquee-hero gap-6 flex flex-col items-center justify-around flex-shrink-0 min-h-full">
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-9.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-14.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-21.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-22.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg" alt />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-9.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-14.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-21.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-22.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg"  />
                     </div>
                     <div aria-hidden="true" className="marquee-hero gap-6 flex flex-col items-center justify-around flex-shrink-0 min-h-full">
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-9.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-14.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-21.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-22.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg" alt />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-9.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-14.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-21.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-22.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg"  />
                     </div>
                   </div>
                   <div className="marquee-reverse gap-6 m-auto flex flex-col overflow-hidden">
                     <div className="marquee-hero gap-6 flex flex-col items-center justify-around flex-shrink-0 min-h-full">
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-6.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-11.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-12.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-13.jpg" alt />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-6.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-11.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-12.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-13.jpg"  />
                     </div>
                     <div aria-hidden="true" className="marquee-hero gap-6 flex flex-col items-center justify-around flex-shrink-0 min-h-full">
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-6.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-11.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-12.jpg" alt />
-                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-13.jpg" alt />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-6.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-10.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-11.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-12.jpg"  />
+                      <img className="aspect-1 object-cover rounded-xl h-full w-60" src="src/assets/images/ai/img-13.jpg"  />
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@ const HomeScreen = () => {
     <div className="container">
       <div className="grid lg:grid-cols-2 gap-6">
         <div className="relative rounded-lg overflow-hidden" data-aos="fade-right" data-aos-easing="ease" data-aos-duration={1000}>
-          <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-10.jpg" alt="woman" loading="lazy" width={640} height={805} />
+          <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-10.jpg"  loading="lazy" width={640} height={805} />
           <div className="absolute inset-0">
             <div className="h-full w-full">
               <div className="flex items-end h-full w-full p-5">
@@ -93,7 +93,7 @@ const HomeScreen = () => {
         </div>{/* end gid-col */}
         <div className="grid md:grid-cols-2 gap-6" data-aos="fade-left" data-aos-easing="ease" data-aos-duration={1000}>
           <div className="relative rounded-lg overflow-hidden">
-            <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-13.jpg" alt="woman" loading="lazy" width={640} height={805} />
+            <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-13.jpg"  loading="lazy" width={640} height={805} />
             <div className="absolute inset-0">
               <div className="h-full w-full">
                 <div className="flex items-end h-full w-full p-5">
@@ -105,7 +105,7 @@ const HomeScreen = () => {
             </div>
           </div>{/* col end  */}
           <div className="relative rounded-lg overflow-hidden">
-            <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-8.jpg" alt="woman" loading="lazy" width={640} height={805} />
+            <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-8.jpg"  loading="lazy" width={640} height={805} />
             <div className="absolute inset-0">
               <div className="h-full w-full">
                 <div className="flex items-end h-full w-full p-5">
@@ -119,7 +119,7 @@ const HomeScreen = () => {
         </div>
         {/* end grid-col */}
         <div className="relative rounded-lg overflow-hidden" data-aos="fade-right" data-aos-easing="ease" data-aos-duration={1000}>
-          <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-11.jpg" alt="woman" loading="lazy" width={640} height={805} />
+          <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-11.jpg"  loading="lazy" width={640} height={805} />
           <div className="absolute inset-0">
             <div className="h-full w-full">
               <div className="flex items-end h-full w-full p-5">
@@ -132,7 +132,7 @@ const HomeScreen = () => {
         </div>
         {/* end grid-col */}
         <div className="relative rounded-lg overflow-hidden" data-aos="fade-left" data-aos-easing="ease" data-aos-duration={1000}>
-          <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-12.jpg" alt="woman" loading="lazy" width={640} height={805} />
+          <img className="mx-auto h-full w-full object-cover object-top ransition duration-500 group-hover:scale-105" src="src/assets/images/ai/img-12.jpg"  loading="lazy" width={640} height={805} />
           <div className="absolute inset-0">
             <div className="h-full w-full">
               <div className="flex items-end justify-end h-full w-full p-5">
@@ -194,7 +194,7 @@ const HomeScreen = () => {
     <div className="container">
       <div className="grid md:grid-cols-2 gap-6 items-center">
         <div className="relative" data-aos="fade-right" data-aos-easing="ease" data-aos-duration={1000}>
-          <img src="src/assets/images/ai/img-7.jpg" className="rounded-xl" alt />
+          <img src="src/assets/images/ai/img-7.jpg" className="rounded-xl"  />
           <div className="absolute inset-0 bg-default-950/50 rounded-xl" />
           <div className="hidden lg:block">
             <div className="absolute top-10 -end-52">

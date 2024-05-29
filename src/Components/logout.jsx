@@ -1,27 +1,22 @@
-// src/components/Auth/logout.js
-import axios from 'axios';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-const logout = async () => {
-  try {
-    const token = localStorage.getItem('token'); // Retrieve the token from local storage
-    if (!token) {
-      throw new Error('No token found');
-    }
+const Logout = () => {
+  const navigate = useNavigate();
 
-    await axios.delete('http://localhost:3000/logout', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-      withCredentials: true,
-    });
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem('token');
 
-    localStorage.removeItem('token'); // Remove the token from local storage
-    toast.success('Logout successful');
-  } catch (error) {
-    toast.error('Logout failed:', error);
-  }
+    // Redirect to the login page
+    navigate('/login');
+  };
+
+  return (
+    <button onClick={handleLogout}>
+      Logout
+    </button>
+  );
 };
 
-export default logout;
+export default Logout;

@@ -7,7 +7,7 @@ const Foot = () => {
   <div className="container py-20">
     <div className="grid md:grid-cols-4 grid-cols-2 gap-10 lg:gap-16">
       <div className="md:col-span-2 col-span-2">
-        <img src="public/img/logo.png" className="h-10" alt />
+        <img src="public/img/logo.png" className="h-10"  />
         <p className="md:w-3/4 text-base font-medium text-default-200 mt-6">Image generate with our ai instantly..</p>
       
       </div>
@@ -15,16 +15,16 @@ const Foot = () => {
         <ul className="flex flex-col gap-3">
           <h5 className="xl:text-xl lg:text-lg font-medium text-default-200 mb-2">Company</h5>
           <li>
-            <a href="javascript:void(0);" className="text-base font-normal text-slate-300 hover:text-primary transition-all">About</a>
+            <a href="#" className="text-base font-normal text-slate-300 hover:text-primary transition-all">About</a>
           </li>
           <li>
-            <a href="javascript:void(0);" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Developers</a>
+            <a href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Developers</a>
           </li>
           <li>
-            <a href="javascript:void(0);" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Blog</a>
+            <a href="="className="text-base font-normal text-slate-300 hover:text-primary transition-all">Blog</a>
           </li>
           <li>
-            <a href="javascript:void(0);" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Contact</a>
+            <a href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Contact</a>
           </li>
         </ul>
       </div>
