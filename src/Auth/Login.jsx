@@ -18,7 +18,8 @@ const Login = () => {
       const response = await axios.post('http://localhost:3000/login', {
         user: { email, password },
       });
-      const token = response.headers.authorization;
+      const  token  = response.headers.authorization;
+      // console.log(response.headers.authorization)
   
       // Store the token in localStorage or other secure storage
       localStorage.setItem('token', token);
@@ -26,24 +27,14 @@ const Login = () => {
       // Show a loading toast and navigate to the dashboard
       const loadingToast = toast.loading('Logging in...');
       navigate('/dashboard');
-
       // After navigation, dismiss the loading toast and show a success toast
-      toast.update(loadingToast, {
-        render: 'Login successful',
-        type: 'success',
-        isLoading: false,
-        autoClose: 3000,
-      });
-
-      // Reload the page after 2 seconds
       setTimeout(() => {
         window.location.reload();
-      }, 0.001);
+      }, 0.005);
     } catch (err) {
       toast.error('Invalid email or password');
     }
   };
-
 
   return (
     <div className="login-container">
