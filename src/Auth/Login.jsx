@@ -23,9 +23,12 @@ const Login = () => {
   
       // Store the token in localStorage or other secure storage
       localStorage.setItem('token', token);
-
+      const userName = response.data.status.data.user.name;
+      localStorage.setItem('userName', userName);
+    
+      
       // Show a loading toast and navigate to the dashboard
-      const loadingToast = toast.loading('Logging in...');
+      toast.success("success")
       navigate('/dashboard');
       // After navigation, dismiss the loading toast and show a success toast
       setTimeout(() => {

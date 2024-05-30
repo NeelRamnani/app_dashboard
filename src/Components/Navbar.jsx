@@ -13,11 +13,13 @@ const Navbar = () => {
   const handleLogout = () => {
     // Remove the token from local storage
     localStorage.removeItem('token');
+    localStorage.removeItem('userName');
 
     // Redirect to the login page
     navigate('/login');
   };
-
+  const userName = localStorage.getItem('userName');
+  
   return (
     <div className="ImaginAi_fn_wrapper">
     <div className="ImaginAi_fn_wrap">
@@ -52,6 +54,9 @@ const Navbar = () => {
                 <img src="svg/moon.svg"  className="fn__svg dark_mode" />
               </a>
             </div>
+            <div className="bar__item bar__item_user">
+                  <h1>Welcome, {userName}!</h1> 
+                  </div>
             {/* !Site Skin (bar item) */}
             {/* User (bar item) */}
             <div className="bar__item bar__item_user">
@@ -64,24 +69,26 @@ const Navbar = () => {
                     <img src="img/user/user.jpg"  />
                   </div>
                   <div className="user_info">
-                  
+                  <h1>Welcome, {userName}!</h1> 
                   </div>
                 </div>
                 <div className="user_nav">
                   <ul>
-                  
+      
                     <li>
                     <Link to="/UserSetting">
                         <span className="icon"><img src="svg/setting.svg"  className="fn__svg" /></span>
                         <span className="text">Settings</span>
                         </Link>
                     </li>
-                   
                     <li>
-                      <a href="sign-in.html">
+                    {/* <div>
                         <span className="icon"><img src="svg/logout.svg"  className="fn__svg" /></span>
-                        <button className='text' onClick={handleLogout}>Logout</button>
-                      </a>
+                        <buton className="text" onClick={handleLogout}>logout</buton>
+                        </div> */}
+                    </li>
+                    <li>
+                   
                     </li>
                   </ul>
                 </div>

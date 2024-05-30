@@ -8,7 +8,7 @@ const getUserDetails = async () => {
       throw new Error('No token found');
     }
 
-    const response = await axios.get('http://localhost:3000/user', {
+    const response = await axios.get('http://localhost:3000/users', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
