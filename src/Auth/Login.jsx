@@ -28,14 +28,14 @@ const Login = () => {
     
       
       // Show a loading toast and navigate to the dashboard
-      toast.success("success")
+      alert("success")
       navigate('/dashboard');
       // After navigation, dismiss the loading toast and show a success toast
       setTimeout(() => {
         window.location.reload();
       }, 0.005);
     } catch (err) {
-      toast.error('Invalid email or password');
+      alert('Invalid email or password');
     }
   };
 
@@ -76,7 +76,7 @@ const Login = () => {
             </div>
             <Link to='/forgotPassword'>Forgot password?</Link>
           </div>
-
+          {error && <p className="error-message">{error}</p>}
           <button type="submit" className="submit-button">Login</button>
           <br />
           <center><Link to='/signup'>Don't have an account? Sign up</Link></center>

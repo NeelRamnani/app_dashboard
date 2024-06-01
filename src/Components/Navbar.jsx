@@ -130,7 +130,7 @@ const Navbar = () => {
             <h2 className="group__title">Start Here</h2>
             <ul className="group__list">
               <li>
-                <Link to='/' className="fn__tooltip active menu__item" data-position="right" title="Home">
+                <Link to='/dashboard' className="fn__tooltip active menu__item" data-position="right" title="Home">
                   <span className="icon"><img src="svg/home.svg"  className="fn__svg" /></span>
                   <span className="text">Home</span>
                 </Link>

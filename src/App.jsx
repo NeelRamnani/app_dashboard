@@ -19,7 +19,7 @@ import ForgotPassword from './Auth/ForgotPassword';
 import SupportContact from './Pages/SupportContact';
 import PromptSuggest from './Pages/PromptSuggest';
 import AboutUs from './Pages/AboutUs';
-
+import PrivateRoute from './Components/PrivateRoute';
 
 
 const Layout = ({ children }) => {
@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
   );
 };
 
-const HomeScreenLayout = ({ children ,children3}) => {
+const HomeScreenLayout = ({ children, children3 }) => {
   return (
     <>
       <Nav />
@@ -46,29 +46,37 @@ const HomeScreenLayout = ({ children ,children3}) => {
 function App() {
   return (
     <BrowserRouter>
-   
+
       <Routes>
-  
+
         <Route path='/' element={<HomeScreenLayout><HomeScreen /></HomeScreenLayout>} />
-        <Route path='/aboutus'  element={<HomeScreenLayout><AboutUs /></HomeScreenLayout>} />
-        <Route path='/ForgotPassword' element={<ForgotPassword /> }/>
-        <Route path='/login' element={<Login />}/>
+        <Route path='/aboutus' element={<HomeScreenLayout><AboutUs /></HomeScreenLayout>} />
+        <Route path='/ForgotPassword' element={<ForgotPassword />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/SupportContact' element={<HomeScreenLayout><SupportContact /></HomeScreenLayout>} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/UserSetting' element={<Layout><UserSetting /></Layout>} />
+        <Route path='/UserSetting' element={<PrivateRoute><Layout><UserSetting /></Layout></PrivateRoute>} />
         <Route path='/faq' element={<Layout><Faq /></Layout>} />
         <Route path='/Documentation' element={<Layout><Documentation /></Layout>} />
-        <Route path='/Contact' element={<Layout><Contact /></Layout>} />
-        <Route path='/ImageGenerate' element={<Layout><ImageGenerate /></Layout>} />
-        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        <Route path='/Contact' element={<PrivateRoute><Layout><Contact /></Layout></PrivateRoute>} />
+        <Route path='/ImageGenerate' element={<PrivateRoute><Layout><ImageGenerate /></Layout></PrivateRoute>} />
+        {/* <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} /> */}
         <Route path='/username' element={<Layout><username /></Layout>} />
-        <Route path='/PromptSuggest' element={<Layout><PromptSuggest /></Layout>} />
+        <Route path='/PromptSuggest' element={<PrivateRoute><Layout><PromptSuggest /></Layout></PrivateRoute>} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Layout><Dashboard /></Layout>
+            </PrivateRoute>
+          }
+        />
 
 
       </Routes>
     </BrowserRouter>
 
-    
+
   );
 }
 
