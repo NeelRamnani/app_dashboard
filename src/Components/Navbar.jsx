@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import './init8a54';
+import { toast } from 'react-toastify';
 
 
 
@@ -16,6 +17,7 @@ const Navbar = () => {
     localStorage.removeItem('userName');
 
     // Redirect to the login page
+    alert("Logging out");
     navigate('/login');
   };
   const userName = localStorage.getItem('userName');

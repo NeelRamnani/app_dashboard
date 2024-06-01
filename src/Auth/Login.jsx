@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import axios from 'axios';
@@ -9,6 +12,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -18,25 +22,24 @@ const Login = () => {
       const response = await axios.post('http://localhost:3000/login', {
         user: { email, password },
       });
-      const  token  = response.headers.authorization;
-      // console.log(response.headers.authorization)
-  
-      // Store the token in localStorage or other secure storage
+      const token = response.headers.authorization;
+
       localStorage.setItem('token', token);
       const userName = response.data.status.data.user.name;
       localStorage.setItem('userName', userName);
     
-      
-      // Show a loading toast and navigate to the dashboard
-      alert("success")
+      alert("success");
       navigate('/dashboard');
-      // After navigation, dismiss the loading toast and show a success toast
       setTimeout(() => {
         window.location.reload();
       }, 0.005);
     } catch (err) {
       alert('Invalid email or password');
     }
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -65,15 +68,23 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <div className="password-input-container">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="john@#75"
-              />
+                placeholder="john@#75"/>
+                
+            {/* //   <IconButton
+            //   aria-label="toggle password visibility"
+            //   onClick={handleClickShowPassword}
+            // >
+            //   {showPassword ? <VisibilityOff /> : <Visibility />}
+            // </IconButton> */}
+              
               {error && <p className="error-message">{error}</p>}
             </div>
+            
             <Link to='/forgotPassword'>Forgot password?</Link>
           </div>
           {error && <p className="error-message">{error}</p>}

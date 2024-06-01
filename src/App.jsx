@@ -19,7 +19,7 @@ import ForgotPassword from './Auth/ForgotPassword';
 import SupportContact from './Pages/SupportContact';
 import PromptSuggest from './Pages/PromptSuggest';
 import AboutUs from './Pages/AboutUs';
-import PrivateRoute from './Components/PrivateRoute';
+import PrivateRoute from './Middleware/PrivateRoute';
 
 
 const Layout = ({ children }) => {

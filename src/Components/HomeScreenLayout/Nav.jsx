@@ -17,7 +17,7 @@ const Nav = () => {
       <nav>
         {/* Navbar Brand Logo */}
         <Link to='/'className="logo">
-          <img src="./img/logo.png" className="h-10" alt="" />
+          <img src="./img/logo.png" className="h-10"  />
        </Link>
         {/* Moblie Menu Toggle Button (Offcanvas Button) */}
         <div className="lg:hidden flex items-center ms-auto px-2.5">
