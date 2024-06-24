@@ -1,94 +1,164 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const UserSetting = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    currentPassword: '',
+    newPassword: '',
+    passwordConfirmation: '',
+  });
+  const [csrfToken, setCsrfToken] = useState(null);
+  const [bearerToken, setBearerToken] = useState(null);
+
+  useEffect(() => {
+    const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+    if (csrfTokenElement) {
+      const token = csrfTokenElement.getAttribute('content');
+      setCsrfToken(token);
+    }
+
+    const storedBearerToken = localStorage.getItem('bearerToken');
+    if (storedBearerToken) {
+      setBearerToken(storedBearerToken);
+    }
+
+    // Fetch user's name using the bearerToken from local storage
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        name: storedUserName,
+      }));
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put('http://localhost:3000/users/update', {
+        user: {
+          name: formData.name,
+          current_password: formData.currentPassword,
+          password: formData.newPassword,
+          password_confirmation: formData.passwordConfirmation,
+        },
+      }, {
+        headers: {
+          'X-CSRF-Token': csrfToken,
+          'Authorization': `Bearer ${bearerToken}`,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log('Profile updated successfully');
+      } else {
+        console.error('Error updating profile:', response.data.errors);
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
   return (
     <div className="ImaginAi_fn_content">
-  {/* PAGE (all pages go inside this div) */}
-  <div className="ImaginAi_fn_page">
-    {/* User Settings Page */}
-    <div className="ImaginAi_fn_user_settings_page">
-      {/* Page Title */}
-      <div className="ImaginAi_fn_pagetitle">
-        <h2 className="title">Settings</h2>
-      </div>
-      {/* !Page Title */}
-      <div className="container small">
-        <div className="ImaginAi_fn_user_settings">
-          <form>
-            <div className="user__settings">
-              <div className="settings_left">
-                {/* Upload Shortcode */}
-                <label className="fn__upload">
-                  <span className="upload_content">
-                    <img src="svg/upload.svg" alt className="fn__svg" />
-                    <span className="title">Drag &amp; Drop a Image</span>
-                    <span className="fn__lined_text">
-                      <span className="line" />
-                      <span className="text">Or</span>
-                      <span className="line" />
-                    </span>
-                    <span className="title">Browse</span>
-                    <span className="desc">Supports JPG, JPEG, and PNG</span>
-                  </span>
-                  <span className="upload_preview">
-                    <a href="#" className="fn__closer fn__icon_button">
-                      <img src="svg/close.svg" alt className="fn__svg" />
-                    </a>
-                    <img src="#" alt className="preview_img" />
-                  </span>
-                  <input type="file" accept="image/*" />
-                </label>
-                {/* !Upload Shortcode */}
-              </div>
-              <div className="settings_right">
-                <div className="item">
-                  <label className="input_label" htmlFor="name">Name</label>
-                  <div className="input_item">
-                    <input className="input" type="text" id="name" defaultValue="Caden Smith" />
+      <div className="ImaginAi_fn_page">
+        <div className="ImaginAi_fn_user_settings_page">
+          <div className="ImaginAi_fn_pagetitle">
+            <h2 className="title">Settings</h2>
+          </div>
+          <div className="container small">
+            <div className="ImaginAi_fn_user_settings">
+              <form onSubmit={handleSubmit}>
+                <div className="user__settings">
+                  <div className="settings_right">
+                    <div className="item">
+                      <label className="input_label" htmlFor="name">
+                        Name
+                      </label>
+                      <div className="input_item">
+                        <input
+                          className="input"
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          readOnly  // Make the input read-only
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="item">
+                      <label className="input_label" htmlFor="currentPassword">
+                        Current Password
+                      </label>
+                      <div className="input_item">
+                        <input
+                          className="input"
+                          type="password"
+                          id="currentPassword"
+                          name="currentPassword"
+                          value={formData.currentPassword}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="item">
+                      <label className="input_label" htmlFor="newPassword">
+                        New Password
+                      </label>
+                      <div className="input_item">
+                        <input
+                          className="input"
+                          type="password"
+                          id="newPassword"
+                          name="newPassword"
+                          value={formData.newPassword}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="item">
+                      <label className="input_label" htmlFor="passwordConfirmation">
+                        Confirm New Password
+                      </label>
+                      <div className="input_item">
+                        <input
+                          className="input"
+                          type="password"
+                          id="passwordConfirmation"
+                          name="passwordConfirmation"
+                          value={formData.passwordConfirmation}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="item">
+                      <label className="fn__checkbox">
+                        <input type="checkbox" />
+                        I approve all changes
+                        <span className="checkmark" />
+                        <img src="svg/check.svg" alt="Check" className="fn__svg" />
+                      </label>
+                    </div>
+                    <div className="item">
+                      <label className="fn__submit">
+                        <input type="submit" value="Save Changes" />
+                      </label>
+                    </div>
                   </div>
                 </div>
-                <div className="item">
-                  <label className="input_label" htmlFor="username">Username</label>
-                  <div className="input_item">
-                    <span className="email">@</span>
-                    <input className="input" type="text" id="username" defaultValue="caddeomyth" />
-                  </div>
-                </div>
-                <div className="item">
-                  <label className="input_label" htmlFor="email">Email Address</label>
-                  <div className="input_item">
-                    <input className="input" type="text" id="email" defaultValue="cadensmith@gmail.com" />
-                  </div>
-                </div>
-                <div className="item">
-                  <label className="input_label" htmlFor="password">Password</label>
-                  <div className="input_item">
-                    <input className="input" type="password" id="password" defaultValue="lqbjSA34a!bh1" />
-                  </div>
-                </div>
-                <div className="item">
-                  <label className="fn__checkbox">
-                    <input type="checkbox" />I approve all changes
-                    <span className="checkmark" />
-                    <img src="svg/check.svg" alt className="fn__svg" />
-                  </label>
-                </div>
-                <div className="item">
-                  <label className="fn__submit">
-                    <input type="submit" defaultValue="Save Changes" />
-                  </label>
-                </div>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-    {/* !User Settings Page */}
-  </div>
-</div>
+  );
+};
 
-  )
-}
-
-export default UserSetting
+export default UserSetting;

@@ -109,12 +109,12 @@ const Navbar = () => {
         <div className="leftpanel_logo">
           <Link to="/" className="fn_logo">
             <span className="full_logo">
-              <img src="img/logo-desktop-full.png"  className="desktop_logo" />
-              <img src="img/logo-retina-full.png"  className="retina_logo" />
+              <img src="\src\assets\img\logo.png"  className="desktop_logo" />
+              <img src="\src\assets\img\logo.png"  className="retina_logo" />
             </span>
             <span className="short_logo">
-              <img src="img/logo-desktop-mini.png"  className="desktop_logo" />
-              <img src="img/logo-retina-mini.png"  className="retina_logo" />
+              <img src="\src\assets\img\logo.png"  className="desktop_logo" />
+              <img src="\src\assets\img\logo.png"  className="retina_logo" />
             </span>
           </Link>
           <a href="#" className="fn__closer fn__icon_button desktop_closer">
@@ -147,7 +147,7 @@ const Navbar = () => {
             <ul className="group__list">
             <li>
                 <Link to='/promptsuggest' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
-                  <span className="icon"><img src="svg/image.svg"  className="fn__svg" /></span>
+                  <span className="icon"><img src="svg/magic-wand.png"  className="fn__svg" /></span>
                   <span className="text">Promp Suggestion</span>
                   </Link>
               </li>

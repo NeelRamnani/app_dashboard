@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import GoogleLoginComponent from '../Components/GoogleLoginComponent';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,10 +47,11 @@ const Login = () => {
       <div className="image-container">
         <img src="/public/img/login-bg.jpg" alt="Login Visual" className="login-image" />
       </div>
-
+    
       <div className="form-container">
         <Link to='/'><button className="back-button">Back</button></Link>
         <h2 className="login-title">Login</h2>
+       
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -75,12 +76,12 @@ const Login = () => {
                 required
                 placeholder="john@#75"/>
                 
-            {/* //   <IconButton
-            //   aria-label="toggle password visibility"
-            //   onClick={handleClickShowPassword}
-            // >
-            //   {showPassword ? <VisibilityOff /> : <Visibility />}
-            // </IconButton> */}
+                {/* <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton> */}
               
               {error && <p className="error-message">{error}</p>}
             </div>
@@ -92,12 +93,13 @@ const Login = () => {
           <br />
           <center><Link to='/signup'>Don't have an account? Sign up</Link></center>
           <div className="social-login">
-            <button className="google-login">
+            {/* <button className="google-login">
               <GoogleIcon />
-            </button>
-            <button className="facebook-login">
+            </button> */}
+           <GoogleLoginComponent />
+            {/* <button className="facebook-login">
               <FacebookOutlinedIcon className="social-icon" />
-            </button>
+            </button> */}
           </div>
         </form>
       </div>

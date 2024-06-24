@@ -3,9 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const SupportContact = () => {
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -14,22 +12,27 @@ const SupportContact = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/contact', { name, email, message });
+      await axios.post('http://localhost:3000/contacts', { contact: { name, email, message } });
       toast.success('Contact submitted successfully');
       setName('');
       setEmail('');
       setMessage('');
     } catch (err) {
       console.error(err);
-      toast.error('Error submitting contact');
+      if (err.response) {
+        toast.error(err.response.data.message || 'Error submitting contact');
+      } else {
+        toast.error('Error submitting contact');
+      }
     }
   };
+
   const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: 'linear-gradient(90deg, rgba(44,8,41,1) 0%, rgba(69,0,58,1) 100%, rgba(88,44,151,1) 100%);',
+    backgroundColor: 'linear-gradient(90deg, rgba(44,8,41,1) 0%, rgba(69,0,58,1) 100%, rgba(88,44,151,1) 100%)',
   };
 
   const formStyle = {
@@ -88,40 +91,52 @@ const SupportContact = () => {
     border: 'none',
     borderRadius: '8px',
     cursor: 'pointer',
-   
   };
 
-
   return (
-   
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit}>
         <h2 style={headerStyle}>Contact Us</h2>
         <div style={formGroupStyle}>
-          <label htmlFor="name" style={labelStyle}>Name</label>
-          <input type="text" id="name" value={name}
-          onChange={(e) => setName(e.target.value)}  required style={inputStyle} />
+          <label htmlFor="name" style={labelStyle}>
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            style={inputStyle}
+          />
         </div>
         <div style={formGroupStyle}>
-          <label htmlFor="email" style={labelStyle}>Email</label>
-          <input type="email" id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
+          <label htmlFor="email" style={labelStyle}>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={inputStyle}
+          />
         </div>
         <div style={formGroupStyle}>
-          <label htmlFor="message" style={labelStyle}>Message</label>
-          <textarea id="message" 
-         
-          required rows="4" 
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}  style={textareaStyle}></textarea>
+          <label htmlFor="message" style={labelStyle}>
+            Message
+          </label>
+          <textarea
+            id="message"
+            required
+            rows="4"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            style={textareaStyle}
+          ></textarea>
         </div>
-        <button
-          type="submit"
-          style={buttonStyle}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007BFF'}
-        >
+        <button type="submit" style={buttonStyle}>
           Send
         </button>
       </form>
