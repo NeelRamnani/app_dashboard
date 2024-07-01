@@ -20,7 +20,7 @@ import SupportContact from './Pages/SupportContact';
 import PromptSuggest from './Pages/PromptSuggest';
 import AboutUs from './Pages/AboutUs';
 import PrivateRoute from './Middleware/PrivateRoute';
-
+import PreviousGen from './Pages/PreviousGen';
 
 const Layout = ({ children }) => {
   return (
@@ -56,6 +56,7 @@ function App() {
         <Route path='/SupportContact' element={<HomeScreenLayout><SupportContact /></HomeScreenLayout>} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/UserSetting' element={<PrivateRoute><Layout><UserSetting /></Layout></PrivateRoute>} />
+        <Route path='/mygen' element={<PrivateRoute><Layout><PreviousGen /></Layout></PrivateRoute>} />
         <Route path='/faq' element={<Layout><Faq /></Layout>} />
         <Route path='/Documentation' element={<Layout><Documentation /></Layout>} />
         <Route path='/Contact' element={<PrivateRoute><Layout><Contact /></Layout></PrivateRoute>} />

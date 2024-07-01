@@ -9,6 +9,7 @@ import './login.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import GoogleLoginComponent from '../Components/GoogleLoginComponent';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,9 +24,12 @@ const Login = () => {
         user: { email, password },
       });
       const token = response.headers.authorization;
-
-      localStorage.setItem('token', token);
+      const userId = response.data.status.data.user.id; // Extract user ID from response
       const userName = response.data.status.data.user.name;
+
+      // Store token, user ID, and user name in local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
       localStorage.setItem('userName', userName);
     
       alert("success");

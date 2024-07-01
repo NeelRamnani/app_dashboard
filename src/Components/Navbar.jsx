@@ -15,6 +15,7 @@ const Navbar = () => {
     // Remove the token from local storage
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
 
     // Redirect to the login page
     alert("Logging out");

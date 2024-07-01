@@ -32,18 +32,28 @@ const ImageGenerate = () => {
     try {
       const response = await fetch(imageUrl);
       const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'generated_image.jpg';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      const formData = new FormData();
+      formData.append('image[image_file]', blob, 'generated_image.jpg');
+      formData.append('image[prompt]', document.getElementById('fn__include_textarea').value.trim());
 
-      // Send a POST request to save the image URL in the database
-      await axios.post('http://localhost:3000/api/images', { url: imageUrl });
-      alert('Image URL saved to database');
+      const token = localStorage.getItem('token'); // Adjust based on how you store the token
+      const userId = localStorage.getItem('userId'); // Retrieve user ID from local storage
+
+      if (!userId) {
+        alert('User ID not found');
+        return;
+      }
+
+      formData.append('image[user_id]', userId);
+
+      const postResponse = await axios.post(
+        'http://localhost:3000/api/images',
+        formData,
+        { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } }
+      );
+
+      console.log('Post response:', postResponse);
+      alert('Image saved to database');
     } catch (error) {
       console.error('Error downloading or saving image:', error);
       alert('Failed to download or save image');
