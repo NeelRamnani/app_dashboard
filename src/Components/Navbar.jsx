@@ -158,7 +158,12 @@ const Navbar = () => {
                   <span className="text">Image Generation</span>
                   </Link>
               </li>
-            
+              <li>
+                <Link to='/mygen' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
+                  <span className="icon"><img src="svg/image.svg"  className="fn__svg" /></span>
+                  <span className="text">My generated Images</span>
+                  </Link>
+              </li>
             </ul>
           </div>
           {/* !#2 navigation group */}
