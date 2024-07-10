@@ -160,7 +160,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link to='/mygen' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
-                  <span className="icon"><img src="svg/image.svg"  className="fn__svg" /></span>
+                  <span className="icon"><img src="svg/prev.svg"  className="fn__svg" /></span>
                   <span className="text">My generated Images</span>
                   </Link>
               </li>

@@ -91,7 +91,7 @@ const Signup = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              placeholder="m@example.com"
+              placeholder="abc@gmail.com"
             />
           </div>
 
@@ -104,7 +104,7 @@ const Signup = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              placeholder="asbbfdbA@#"
+              placeholder="Atleast 8 characters"
             />
           </div>
 
@@ -117,7 +117,7 @@ const Signup = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              placeholder="John"
+              placeholder="e.g John"
             />
           </div>
 

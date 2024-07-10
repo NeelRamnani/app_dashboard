@@ -33,8 +33,9 @@ const ImageGenerate = () => {
       const response = await fetch(imageUrl);
       const blob = await response.blob();
       const formData = new FormData();
+      const prompt = document.getElementById('fn__include_textarea').value.trim();
       formData.append('image[image_file]', blob, 'generated_image.jpg');
-      formData.append('image[prompt]', document.getElementById('fn__include_textarea').value.trim());
+      formData.append('image[prompt]', prompt);
 
       const token = localStorage.getItem('token'); // Adjust based on how you store the token
       const userId = localStorage.getItem('userId'); // Retrieve user ID from local storage
@@ -54,6 +55,17 @@ const ImageGenerate = () => {
 
       console.log('Post response:', postResponse);
       alert('Image saved to database');
+
+      // Trigger the download for the user
+      const downloadLink = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      downloadLink.href = url;
+      downloadLink.download = 'generated_image.jpg';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(url);
+      
     } catch (error) {
       console.error('Error downloading or saving image:', error);
       alert('Failed to download or save image');
@@ -83,7 +95,7 @@ const ImageGenerate = () => {
                   <div className="generate_section">
                     <label className="fn__toggle">
                     </label>
-                    <a id="generate_it" href="#" className="ImaginAi_fn_button" onClick={handleGenerateClick}>generate</a>
+                    <a id="generate_it" href="#" className="ImaginAi_fn_button" onClick={handleGenerateClick}>Generate</a>
                   </div>
                 </div>
               </div>

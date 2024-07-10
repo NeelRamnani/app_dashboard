@@ -40,11 +40,13 @@ const Home = () => {
                           <span className="arrow"><img src="svg/arrow.svg"  className="fn__svg" /></span>
                         </Link>
                       </div>
+                      
                     </li>
                     <li>
                     </li>
                   </ul>
                 </div>
+                
                 {/* !Interactive List Shortcode */}
               </div>
               {/* !Home Page */}
