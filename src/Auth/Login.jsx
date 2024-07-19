@@ -32,7 +32,7 @@ const Login = () => {
       localStorage.setItem('userId', userId);
       localStorage.setItem('userName', userName);
     
-      alert("success");
+     toast("success");
       navigate('/dashboard');
       setTimeout(() => {
         window.location.reload();

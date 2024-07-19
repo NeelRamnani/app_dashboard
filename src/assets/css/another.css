@@ -7,6 +7,10 @@ body {
     line-height: inherit;
    
 }
+.options_area  select{
+    background-color: rgba(0, 0, 0, 0.168);
+    color: rgb(78, 76, 76);
+}
 .loading-spinner {
     position: fixed;
     top: 50%;

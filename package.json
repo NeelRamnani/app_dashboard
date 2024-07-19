@@ -43,7 +43,8 @@
     "react-toastify": "^10.0.5",
     "safe": "^0.4.8",
     "script": "^0.1.4",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "toast": "^0.5.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

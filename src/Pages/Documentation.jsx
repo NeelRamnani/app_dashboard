@@ -1,6 +1,9 @@
 import React from 'react'
 
 const Documentation = () => {
+  setTimeout(() => {
+    window.location.reload();
+  }, 3500.0);
   return (
     <div className="ImaginAi_fn_content">
       {/* PAGE (all pages go inside this div) */}

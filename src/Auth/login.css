@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    
+  
 
   }
   
@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: row;
     height: 100vh;
-    
+  
   }
   
   .image-container {
@@ -58,10 +58,11 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #ffffff;
+    background: linear-gradient(90deg, rgb(26, 21, 26) 0%, rgb(43, 12, 37) 100%, rgba(54, 34, 58, 0.151) 100%, rgb(52, 31, 43) 50%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     width: 100px;
+    
   }
   
   .back-button {
@@ -71,7 +72,7 @@ body {
     padding: 10px 20px;
     background-color: transparent;
     border: none;
-    color: #333;
+    color: #d7d4d6;
     cursor: pointer;
     font-size: 16px;
   }
@@ -79,7 +80,7 @@ body {
   .login-title {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #333;
+    color: #989898;
   }
   
   .form-group {
@@ -91,16 +92,16 @@ body {
   .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #333;
+    color: #afafaf;
   }
   
   .form-group input {
     width: 100%;
     padding: 25px;
-    border: 1px solid #ccc;
+    border: 2px solid #7e7e7e;
     border-radius: 4px;
     font-size: 16px;
-    color: black;
+    color: rgb(167, 167, 167);
   }
   
   .submit-button {
@@ -144,6 +145,7 @@ background: linear-gradient(90deg, rgba(113,98,165,1) 0%, rgba(155,72,141,1) 41%
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 20px;
+    color: black;
   }
   
   .submit-button:hover {

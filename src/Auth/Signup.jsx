@@ -128,14 +128,10 @@ const Signup = () => {
           <center>
             <Link to="/login">Already have an account? Sign in</Link>
           </center>
-          {/* <div className="social-login">
-            <button className="google-login">
-              <GoogleIcon />
-            </button>
-            <div>
+        <div>
               <ToastContainer />
             </div>
-          </div> */}
+        
         </form>
       </div>
     </div>

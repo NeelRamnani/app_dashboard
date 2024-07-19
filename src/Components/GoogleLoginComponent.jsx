@@ -20,8 +20,8 @@ const GoogleLoginButton = () => {
         padding: '10px 16px',
         border: '1px solid #ccc',
         borderRadius: '5px',
-        backgroundColor: 'white',
-        color: '#757575',
+        backgroundColor: 'transparent',
+        color: 'gray',
         fontSize: '16px',
      
         cursor: 'pointer',

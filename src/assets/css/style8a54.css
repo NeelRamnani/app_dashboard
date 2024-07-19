@@ -5610,6 +5610,9 @@ a.fn__like.no_border .fn__svg {
     border-bottom: 1px solid var(--ImaginAi-border-color);
     position: relative
 }
+.modlselect{
+    background-color: black;
+}
 
 .fn__generation_item:hover {
     z-index: 10

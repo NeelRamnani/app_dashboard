@@ -8,10 +8,7 @@ const AboutUs = () => {
     <div style={{ ...textStyle, padding: '20px', backgroundColor: 'black', fontFamily: 'Arial, sans-serif' }}>
       <h1 style={textStyle}>About Us</h1>
       <br></br><br></br><br></br><br></br> <br></br><br></br>
-      <p style={textStyle}>
-        Welcome to <strong>[ImaginAi]</strong>, where innovation meets creativity in the world of image generation. Our mission is to transform how you create and interact with visuals by leveraging the latest advancements in artificial intelligence. Whether you're a professional designer, a content creator, or simply someone passionate about visual art, our tools are designed to cater to your needs with precision and creativity.
-      </p>
-      <br></br><br></br>
+      
       <h2 style={textStyle}>Who We Are</h2>
       <p style={textStyle}>
         At <strong>ImaginAi</strong>, we are a dedicated team of developers, designers, and AI enthusiasts. Our team includes Qasim, Neel, Abu Bakar, and Saad Hussain, who are committed to pushing the boundaries of digital imagery. With expertise spanning computer vision, deep learning, and user experience design, we ensure that our platform not only delivers stunning visuals but also provides an intuitive and user-friendly experience.

@@ -20,7 +20,7 @@ const Foot = () => {
           
         
           <li>
-            <Link  href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all" to="/Contact">Contact</Link>
+            <Link  href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all" to="/SupportContact">Contact</Link>
           </li>
         </ul>
       </div>
