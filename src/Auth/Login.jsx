@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import {ToastContainer, toast } from 'react-toastify';
 import GoogleLoginComponent from '../Components/GoogleLoginComponent';
 
 const Login = () => {
@@ -32,13 +32,13 @@ const Login = () => {
       localStorage.setItem('userId', userId);
       localStorage.setItem('userName', userName);
     
-     toast("success");
+     toast.success("success");
       navigate('/dashboard');
       setTimeout(() => {
         window.location.reload();
       }, 0.005);
     } catch (err) {
-      alert('Invalid email or password');
+      toast.error('Invalid email or password');
     }
   };
 
@@ -104,6 +104,9 @@ const Login = () => {
             {/* <button className="facebook-login">
               <FacebookOutlinedIcon className="social-icon" />
             </button> */}
+             <div>
+              <ToastContainer />
+            </div>
           </div>
         </form>
       </div>

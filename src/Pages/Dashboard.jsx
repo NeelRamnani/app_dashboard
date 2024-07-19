@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {ToastContainer, toast } from 'react-toastify';
 const Home = () => {
   
   return (
@@ -57,6 +58,9 @@ const Home = () => {
             {/* !FOOTER (inside the content) */}
           </div>
           {/* !CONTENT */}
+        </div>
+        <div>
+          <ToastContainer/>
         </div>
       </div></div>
  

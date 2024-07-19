@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import './init8a54';
-import { toast } from 'react-toastify';
-
+import {ToastContainer, toast } from 'react-toastify';
 
 
 const Navbar = () => {
@@ -18,7 +17,7 @@ const Navbar = () => {
     localStorage.removeItem('userId');
 
     // Redirect to the login page
-    alert("Logging out");
+    toast.success("Logging out");
     navigate('/login');
   };
   const userName = localStorage.getItem('userName');
@@ -198,6 +197,10 @@ const Navbar = () => {
           </div>
           {/* !#3 navigation group */}
         </div>
+        <div>
+<ToastContainer />
+</div>
+
         {/* !content (left panel) */}
       </div></div></div>
   )
