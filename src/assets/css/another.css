@@ -7,7 +7,16 @@ body {
     line-height: inherit;
    
 }
-
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    z-index: 9999; /* Ensure it appears above other content */
+   
+    padding: 20px;
+   
+  }
 a,
 button,
 input,

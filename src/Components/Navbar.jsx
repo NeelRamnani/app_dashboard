@@ -108,7 +108,7 @@ const Navbar = () => {
         <div className="mobile_extra_closer" />
         {/* logo (left panel) */}
         <div className="leftpanel_logo">
-          <Link to="/" className="fn_logo">
+          <Link to="#" className="fn_logo">
             <span className="full_logo">
               <img src="\src\assets\img\logo.png"  className="desktop_logo" />
               <img src="\src\assets\img\logo.png"  className="retina_logo" />
@@ -181,9 +181,7 @@ const Navbar = () => {
                   <li>
                     <Link to="/Documentation"><span className="text">Documentation</span></Link>
                   </li>
-                  <li>
-                    <Link to="/faq"><span className="text">FAQ</span></Link>
-                  </li>
+               
                   <li>
                     <Link to="/Contact"><span className="text">Contact Us</span></Link>
                   </li>

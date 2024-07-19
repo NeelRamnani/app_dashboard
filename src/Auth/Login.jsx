@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="image-container">
-        <img src="/public/img/login-bg.jpg" alt="Login Visual" className="login-image" />
+        <img src="https://app.leonardo.ai/_next/image?url=%2Fimg%2Flogin-hero-images%2FFemaleAdventurer3.webp&w=3840&q=75" alt="Login Visual" className="login-image" />
       </div>
     
       <div className="form-container">
@@ -65,7 +65,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="m@example.com"
+              placeholder="e.g john@gmail.com"
             />
           </div>
 
@@ -78,7 +78,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="john@#75"/>
+                placeholder="*********"/>
                 
                 {/* <IconButton
                 aria-label="toggle password visibility"

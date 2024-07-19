@@ -180,7 +180,7 @@ const HomeScreen = () => {
           <div className="text-center">
             <i data-lucide="dribbble" className="h-10 w-10 text-primary mx-auto" />
             <h2 className="text-2xl font-medium text-default-200 mt-4">Works for everything</h2>
-            <p className="text-base font-normal text-default-300 mt-4">Generate up to 10 images in seconds. Our AI is super fast and flexible that can generate image for you in quick times</p>
+            <p className="text-base font-normal text-default-300 mt-4">Generate images in seconds. Our AI is super fast and flexible that can generate image for you in quick times</p>
             <a href="#" className="inline-flex gap-2 items-center relative text-primary group mt-5">
               <span className="absolute h-px w-7/12 group-hover:w-full transition-all duration-500 rounded bg-primary/80 -bottom-0" />
               Lead more <i data-lucide="move-right" className="h-4 w-4" />

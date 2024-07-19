@@ -71,7 +71,7 @@ const Signup = () => {
     <div className="login-container">
       <div className="image-container">
         <img
-          src="https://leonardo-cdn.b-cdn.net/wp-content/uploads/2023/07/Default_dodge_challenger_in_a_cyber_punk_landscape_0_7b2c7227-b643-4ea4-8393-c6036723fb99_1.jpeg"
+          src="https://app.leonardo.ai/_next/image?url=%2Fimg%2Flogin-hero-images%2FAzarathag.webp&w=3840&q=75"
           alt="Login Visual"
           className="login-image"
         />
@@ -128,14 +128,14 @@ const Signup = () => {
           <center>
             <Link to="/login">Already have an account? Sign in</Link>
           </center>
-          <div className="social-login">
+          {/* <div className="social-login">
             <button className="google-login">
               <GoogleIcon />
             </button>
             <div>
               <ToastContainer />
             </div>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

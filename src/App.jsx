@@ -6,7 +6,7 @@ import Dashboard from './Pages/Dashboard';
 import './assets/css/style8a54.css';
 import './assets/css/plugins8a54.css';
 import ImageGenerate from './Pages/ImageGenerate';
-import Faq from './Pages/Faq';
+
 import Contact from './Pages/Contact';
 import Documentation from './Pages/Documentation';
 import UserSetting from './Pages/UserSetting';
@@ -57,7 +57,7 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/UserSetting' element={<PrivateRoute><Layout><UserSetting /></Layout></PrivateRoute>} />
         <Route path='/mygen' element={<PrivateRoute><Layout><PreviousGen /></Layout></PrivateRoute>} />
-        <Route path='/faq' element={<Layout><Faq /></Layout>} />
+       
         <Route path='/Documentation' element={<Layout><Documentation /></Layout>} />
         <Route path='/Contact' element={<PrivateRoute><Layout><Contact /></Layout></PrivateRoute>} />
         <Route path='/ImageGenerate' element={<PrivateRoute><Layout><ImageGenerate /></Layout></PrivateRoute>} />

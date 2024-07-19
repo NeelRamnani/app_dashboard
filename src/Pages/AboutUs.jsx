@@ -1,42 +1,37 @@
 import React from 'react';
-import './AboutUs.css'; // Assuming you have some CSS for styling
 
 const AboutUs = () => {
+  const textStyle = { color: 'white' };
+
   return (
-    <div className="about-us">
-      <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
-      <h1>About Us</h1>
-      <p>
-        Welcome to <strong>[Your Website Name]</strong>, the future of image creation and design.
-        Our mission is to revolutionize the way you generate and interact with images by harnessing
-        the power of advanced artificial intelligence. Whether you're a professional designer, a
-        content creator, or someone who simply loves exploring visual art, our AI tools are designed
-        to meet your needs with precision and creativity.
+    
+    <div style={{ ...textStyle, padding: '20px', backgroundColor: '#333', fontFamily: 'Arial, sans-serif' }}>
+      <h1 style={textStyle}>About Us</h1>
+      <br></br><br></br><br></br><br></br> <br></br><br></br>
+      <p style={textStyle}>
+        Welcome to <strong>[ImaginAi]</strong>, where innovation meets creativity in the world of image generation. Our mission is to transform how you create and interact with visuals by leveraging the latest advancements in artificial intelligence. Whether you're a professional designer, a content creator, or simply someone passionate about visual art, our tools are designed to cater to your needs with precision and creativity.
       </p>
-      <h2>Who We Are</h2>
-      <p>
-        At <strong>[Your Website Name]</strong>, we are a team of passionate developers, designers,
-        and AI enthusiasts dedicated to pushing the boundaries of what's possible in the world of
-        digital imagery. Our expertise spans across various fields including computer vision, deep
-        learning, and user experience design, ensuring that our platform not only produces stunning
-        visuals but is also intuitive and easy to use.
+      <br></br><br></br>
+      <h2 style={textStyle}>Who We Are</h2>
+      <p style={textStyle}>
+        At <strong>ImaginAi</strong>, we are a dedicated team of developers, designers, and AI enthusiasts. Our team includes Qasim, Neel, Abu Bakar, and Saad Hussain, who are committed to pushing the boundaries of digital imagery. With expertise spanning computer vision, deep learning, and user experience design, we ensure that our platform not only delivers stunning visuals but also provides an intuitive and user-friendly experience.
       </p>
-      <h2>Our Vision</h2>
-      <p>
-        Our vision is to democratize the creation of high-quality images, making cutting-edge
-        technology accessible to everyone. We believe that creativity should have no bounds, and
-        our AI-driven tools empower users to bring their ideas to life with unprecedented ease and
-        efficiency.
+      <br></br><br></br>
+      <h2 style={textStyle}>Our Vision</h2>
+      <p style={textStyle}>
+        We aim to democratize high-quality image creation, making advanced technology accessible to everyone. We believe that creativity should have no limits, and our AI-driven tools empower users to bring their visions to life with exceptional ease and efficiency.
       </p>
-      <h2>Why Choose Us</h2>
-      <ul>
-        <li><strong>Innovative Technology:</strong> Our platform leverages the latest advancements in AI to provide unique and high-quality image generation capabilities.</li>
-        <li><strong>User-Friendly Interface:</strong> Designed with the user in mind, our intuitive interface makes it easy for anyone to create stunning images, regardless of technical expertise.</li>
-        <li><strong>Customization and Flexibility:</strong> Tailor your creations with a wide range of customization options to suit your specific needs and preferences.</li>
-        <li><strong>Community and Support:</strong> Join a vibrant community of creators and get support from our dedicated team whenever you need it.</li>
+      <br></br><br></br>
+      <h2 style={textStyle}>Why Choose Us</h2>
+      <ul style={textStyle}>
+        <li><strong>Innovative Technology:</strong> Our platform utilizes the latest advancements in AI to deliver unique and high-quality image generation capabilities.</li>
+        <li><strong>User-Friendly Interface:</strong> Our intuitive interface is designed for ease of use, allowing anyone to create impressive images without needing technical expertise.</li>
+        <li><strong>Customization and Flexibility:</strong> Customize your creations with a wide range of options to fit your specific needs and preferences.</li>
+        <li><strong>Community and Support:</strong> Join a vibrant community of creators and receive support from our dedicated team whenever needed.</li>
       </ul>
-      <p>
-        Thank you for choosing <strong>[Your Website Name]</strong>. We look forward to seeing the amazing images you'll create with our tools. Let's push the boundaries of creativity together!
+      <br></br><br></br>
+      <p style={textStyle}>
+        Thank you for choosing <strong>ImaginAi</strong>. We are excited to see the incredible images you'll create with our tools. Together, let's push the boundaries of creativity!
       </p>
     </div>
   );
