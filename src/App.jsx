@@ -5,8 +5,9 @@ import Footer from './Components/Footer';
 import Dashboard from './Pages/Dashboard';
 import './assets/css/style8a54.css';
 import './assets/css/plugins8a54.css';
-import ImageGenerate from './Pages/ImageGenerate';
 
+import ImageGenerate from './Pages/ImageGenerate';
+import Callback from './Pages/Callback';
 import Contact from './Pages/Contact';
 import Documentation from './Pages/Documentation';
 import UserSetting from './Pages/UserSetting';
@@ -53,6 +54,7 @@ function App() {
         <Route path='/aboutus' element={<HomeScreenLayout><AboutUs /></HomeScreenLayout>} />
         <Route path='/ForgotPassword' element={<ForgotPassword />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/Callback' element={<Callback />} />
         <Route path='/SupportContact' element={<HomeScreenLayout><SupportContact /></HomeScreenLayout>} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/UserSetting' element={<PrivateRoute><Layout><UserSetting /></Layout></PrivateRoute>} />
