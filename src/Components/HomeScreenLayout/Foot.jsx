@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../assets/css/another.css'
-
+import { Link } from 'react-router-dom';
 const Foot = () => {
   return (
     <div> <footer className="bg-default-950/40 backdrop-blur-3xl">
@@ -15,16 +15,12 @@ const Foot = () => {
         <ul className="flex flex-col gap-3">
           <h5 className="xl:text-xl lg:text-lg font-medium text-default-200 mb-2">Company</h5>
           <li>
-            <a href="#" className="text-base font-normal text-slate-300 hover:text-primary transition-all">About</a>
+            <Link  className="text-base font-normal text-slate-300 hover:text-primary transition-all" to="/Aboutus">About</Link>
           </li>
+          
+        
           <li>
-            <a href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Developers</a>
-          </li>
-          <li>
-            <a href="="className="text-base font-normal text-slate-300 hover:text-primary transition-all">Blog</a>
-          </li>
-          <li>
-            <a href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all">Contact</a>
+            <Link  href="=" className="text-base font-normal text-slate-300 hover:text-primary transition-all" to="/Contact">Contact</Link>
           </li>
         </ul>
       </div>
@@ -37,7 +33,7 @@ const Foot = () => {
         © Imagin Ai - <a href="#">Design &amp; Crafted <i data-lucide="heart" className="inline h-4 w-4 text-red-500 fill-red-500" /> by ImaginAi</a>
       </p>
       <p className="text-base font-medium text-default-400">
-        <a href="#">Terms Conditions &amp; Policy</a>
+        <a href="#">All rights reserved  2024</a>
       </p>
     </div>{/* Flex End */}
   </div>{/* Container End */}

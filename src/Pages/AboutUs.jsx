@@ -5,7 +5,7 @@ const AboutUs = () => {
 
   return (
     
-    <div style={{ ...textStyle, padding: '20px', backgroundColor: '#333', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ ...textStyle, padding: '20px', backgroundColor: 'black', fontFamily: 'Arial, sans-serif' }}>
       <h1 style={textStyle}>About Us</h1>
       <br></br><br></br><br></br><br></br> <br></br><br></br>
       <p style={textStyle}>
