@@ -8,12 +8,16 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "concurrently \"node server.cjs\" \"npm run vite\"",
+    "start": "concurrently \"node server.mjs\" \"npm run vite\"",
     "vite": "vite",
-    "server": "node server.cjs"
+    "server": "node server.mjs"
   },
+  
   "dependencies": {
     "@emotion/react": "^11.11.4",
+    "@qdrant/js-client-rest": "^1.10.0",
+   
+    "ollama": "^0.5.6",
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",

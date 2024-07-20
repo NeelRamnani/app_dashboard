@@ -1,30 +1,14 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import loadingGif from '../assets/neel.gif'; // Adjust the path to your GIF file
 
 const PromptSuggest = () => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState(null);
-
-  const templatePrompt = `Transcript of a dialog, where the User interacts with an Assistant named Stablediffy. Stablediffy knows much about prompt engineering for stable diffusion (an open-source image generation software). The User asks Stablediffy about prompts for stable diffusion Image Generation.
-
-Possible keywords for stable diffusion: "cinematic, colorful background, concept art, dramatic lighting, high detail, highly detailed, hyper realistic, intricate, intricate sharp details, octane render, smooth, studio lighting, trending on artstation, landscape, scenery, cityscape, underwater, salt flat, tundra, jungle, desert mountain, ocean, beach, lake, waterfall, ripples, swirl, waves, avenue, horizon, pasture, plateau, garden, fields, floating island, forest, cloud forest, grasslands, flower field, flower ocean, volcano, cliff, snowy mountain city, cityscape, street, downtown"
-
--- Transcript --
-
-USER: suggest a prompt for a young girl from Swiss sitting by the window with headphones on
-ASSISTANT: gorgeous young Swiss girl sitting by window with headphones on, wearing white bra with translucent shirt over, soft lips, beach blonde hair, octane render, unreal engine, photograph, realistic skin texture, photorealistic, hyper realism, highly detailed, 85mm portrait photography, award winning, hard rim lighting photography
-
-USER: suggest a prompt for an mysterious city
-ASSISTANT: Mysterious city, cityscape, urban, downtown, street, noir style, cinematic lightning, dramatic lightning, intricate, sharp details, octane render, unreal engine, highly detailed, night scene, dark lighting, gritty atmosphere
-
-USER: suggest a prompt for a high quality render of a car in 1950
-ASSISTANT: Car in 1950, highly detailed, classic car, 1950's, highly detailed, dramatic lightning, cinematic lightning, unreal engine
-
-USER: ${userInput}`;
+  const [loading, setLoading] = useState(false); // New state for loading
 
   const dataTemplate = {
-    model: "mistral",
-    prompt: "",
-    stream: false
+    query: "" // The key should match what the backend expects
   };
 
   const handleInputChange = (event) => {
@@ -33,27 +17,36 @@ USER: ${userInput}`;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const prompt = templatePrompt.replace("${userInput}", userInput);
-    const data = { ...dataTemplate, prompt };
+    const data = { ...dataTemplate, query: userInput }; // Directly use userInput as query
+
+    setLoading(true); // Start loading
 
     try {
-      const response = await fetch('http://localhost:11434/api/generate', {
-        method: 'POST',
+      const result = await axios.post('http://localhost:4000/process-query', data, {
         headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+          'Content-Type': 'application/json',
+          'Accept': 'application/json' // Ensure the server responds with JSON
+        }
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setResponse(result);
+      setResponse(result.data);
     } catch (error) {
-      console.error('Error:', error);
-      setResponse({ error: error.message });
+      console.error('Error:', error.response ? error.response.data : error.message);
+      setResponse({ error: error.response ? error.response.data : error.message });
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
+
+  const handleCopy = () => {
+    if (response && response.response) {
+      navigator.clipboard.writeText(response.response)
+        .then(() => {
+          alert('Response copied to clipboard');
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+        });
     }
   };
 
@@ -65,11 +58,11 @@ USER: ${userInput}`;
             <div className="generation_header">
               <div className="header_top">
                 <h1 className="title">Prompt Suggestion</h1>
-                <div className="setup">
+                {/* <div className="setup">
                   <a href="#" className="sidebar__trigger">
                     <img src="svg/option.svg" alt="option" className="fn__svg" />
                   </a>
-                </div>
+                </div> */}
               </div>
               <div className="header_bottom">
                 <div className="include_area">
@@ -89,16 +82,23 @@ USER: ${userInput}`;
                     id="generate_it" 
                     className="ImaginAi_fn_button" 
                     onClick={handleSubmit}
+                    disabled={loading} // Disable button while loading
                   >
-                    Generate
+                    {loading ? 'Generating...' : 'Generate'} {/* Change button text based on loading state */}
                   </button>
                 </div>
               </div>
             </div>
-            {response && (
+            {loading && (
+              <div className="loading">
+                <img src={loadingGif} alt="Loading..." /> {/* Display GIF while loading */}
+              </div>
+            )}
+            {response && !loading && (
               <div className="response">
                 <h2>Response:</h2>
                 <pre>{JSON.stringify(response, null, 2)}</pre>
+                <button onClick={handleCopy}>Copy</button>
               </div>
             )}
           </div>

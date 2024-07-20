@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { client, Status, GenerationStyle } from '../utils/imaginesdk';
-
+import {ToastContainer, toast } from 'react-toastify';
 const ImageGenerate = () => {
   const [generatedImages, setGeneratedImages] = useState([]);
   const [loading, setLoading] = useState(false); // Added loading state
@@ -14,7 +14,7 @@ const ImageGenerate = () => {
     seed: '',
     steps: 30,
   });
-  const apiKey = "vk-wLwsAiBuqREXyitcI3A2bs3DWFywHtHMIIWBDqW2u5yeBdu";
+  const apiKey = "vk-SQCnqYF5viKvzeZDqHTXsU2t3WKNHJ587WrAeQbu6xUhU";
 
   const styleOptions = Object.entries(GenerationStyle).map(([key, value]) => ({
     id: value,
@@ -54,7 +54,7 @@ const ImageGenerate = () => {
 
   const handleGenerateClick = async () => {
     if (!options.prompt) {
-      alert('Please enter a prompt');
+      toast.error('Please enter a prompt');
       return;
     }
 
@@ -69,7 +69,7 @@ const ImageGenerate = () => {
       setGeneratedImages(imageUrls.filter(url => url !== null));
     } catch (error) {
       console.error('Error generating images:', error);
-      alert('Error generating images');
+      toast.error('Error generating images');
     } finally {
       setLoading(false); // Set loading to false after request completes
     }
@@ -114,7 +114,7 @@ const ImageGenerate = () => {
       );
   
       console.log('Image saved to database:', responseBackend.data);
-      alert('Image saved to database');
+      toast.success('Image saved');
     } catch (error) {
       console.error('Error handling download or save:', error);
       alert('Failed to download or save image');
@@ -223,10 +223,14 @@ const ImageGenerate = () => {
           </div>
         </div>
       </div>
+      <div>
+        <ToastContainer/>
+      </div>
       {loading && (
         <div className="loading-spinner">
           <img src="public\neel.gif" alt="Loading..." /> {/* Loading GIF */}
         </div>
+        
       )}
     </div>
   );
