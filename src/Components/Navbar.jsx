@@ -148,7 +148,7 @@ const Navbar = () => {
             <li>
                 <Link to='/promptsuggest' className="fn__tooltip menu__item" data-position="right" title="Image Generation">
                   <span className="icon"><img src="svg/magic-wand.png"  className="fn__svg" /></span>
-                  <span className="text">Promp Suggestion</span>
+                  <span className="text">Prompt Suggestion</span>
                   </Link>
               </li>
               <li>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import loadingGif from '../assets/neel.gif'; // Adjust the path to your GIF file
-
+import { ToastContainer, toast } from 'react-toastify';
 const PromptSuggest = () => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState(null);
@@ -42,7 +42,7 @@ const PromptSuggest = () => {
     if (response && response.response) {
       navigator.clipboard.writeText(response.response)
         .then(() => {
-          alert('Response copied to clipboard');
+          toast.success('Response copied to clipboard');
         })
         .catch(err => {
           console.error('Failed to copy: ', err);
@@ -90,7 +90,7 @@ const PromptSuggest = () => {
               </div>
             </div>
             {loading && (
-              <div className="loading">
+              <div className="loading-spinner">
                 <img src={loadingGif} alt="Loading..." /> {/* Display GIF while loading */}
               </div>
             )}
@@ -103,6 +103,7 @@ const PromptSuggest = () => {
             )}
           </div>
         </div>
+        <div><ToastContainer/></div>
       </div>
     </div>
   );
