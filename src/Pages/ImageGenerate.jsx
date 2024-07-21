@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
 import { client, Status, GenerationStyle } from '../utils/imaginesdk';
 import {ToastContainer, toast } from 'react-toastify';
+
 const ImageGenerate = () => {
   const [generatedImages, setGeneratedImages] = useState([]);
   const [loading, setLoading] = useState(false); // Added loading state
@@ -14,7 +16,8 @@ const ImageGenerate = () => {
     seed: '',
     steps: 30,
   });
-  const apiKey = "vk-SQCnqYF5viKvzeZDqHTXsU2t3WKNHJ587WrAeQbu6xUhU";
+  
+  const apiKey = "vk-uAA77DgHwOddCU131Ke42kuIYfw8TFABt0VaKB9byAzKq";
 
   const styleOptions = Object.entries(GenerationStyle).map(([key, value]) => ({
     id: value,

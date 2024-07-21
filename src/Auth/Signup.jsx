@@ -10,6 +10,7 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
     name: ''
   });
   const navigate = useNavigate();
@@ -28,6 +29,10 @@ const Signup = () => {
     }
     if (!formData.password || formData.password.length < 8) {
       toast.error('Password must be at least 8 characters long.');
+      isValid = false;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('Passwords do not match.');
       isValid = false;
     }
     if (!formData.name) {
@@ -52,7 +57,7 @@ const Signup = () => {
       if (response && response.data) {
         console.log(response.data);
         // Clear form after successful signup
-        setFormData({ email: '', password: '', name: '' });
+        setFormData({ email: '', password: '', confirmPassword: '', name: '' });
         toast.success("Account Created Successfully!");
         // Redirect to login page after a short delay to allow toast notification to show
         setTimeout(() => navigate('/login'), 2000); // 2 seconds delay
@@ -104,12 +109,25 @@ const Signup = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              placeholder="Atleast 8 characters"
+              placeholder="At least 8 characters"
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="name">Userame</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+              placeholder="Re-enter your password"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="name">Username</label>
             <input
               type="text"
               id="name"
@@ -128,10 +146,9 @@ const Signup = () => {
           <center>
             <Link to="/login">Already have an account? Sign in</Link>
           </center>
-        <div>
-              <ToastContainer />
-            </div>
-        
+          <div>
+            <ToastContainer />
+          </div>
         </form>
       </div>
     </div>

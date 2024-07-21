@@ -1,23 +1,20 @@
 import express from 'express';
-import cors from 'cors';
 import { QdrantClient } from '@qdrant/js-client-rest';
 import ollama from 'ollama';
+import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 const qdrant = new QdrantClient({ url: 'http://127.0.0.1:6333/' });
-const collectionName = 'imaginai';
+const collectionName = 'fyp';
 const embedmodel = 'all-minilm';
 const mainmodel = 'mistral';
 
-app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend URL
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-}));
+// Enable CORS for all routes
+app.use(cors());
 
-app.use(express.json()); // Middleware to parse JSON bodies
+app.use(express.json());
 
 async function getOrCreateCollection(client, name) {
   try {
@@ -30,17 +27,41 @@ async function getOrCreateCollection(client, name) {
 app.post("/process-query", async (req, res) => {
   const { query } = req.body;
 
+  if (!query) {
+    return res.status(400).json({ error: 'Query is required' });
+  }
+
   try {
     await getOrCreateCollection(qdrant, collectionName);
-    const queryembed = (await ollama.embeddings({ model: embedmodel, prompt: query })).embedding;
+
+    const queryembed = await ollama.embeddings({ model: embedmodel, prompt: query });
+    if (!queryembed || !queryembed.embedding) {
+      throw new Error('Failed to generate embeddings');
+    }
+
     const searchResponse = await qdrant.search(collectionName, {
-      vector: queryembed,
+      vector: queryembed.embedding,
       limit: 5
     });
-    console.log(searchResponse);
-    const relevantDocs = searchResponse.map(item => item.sentences).join(', ');
-    const modelQuery = `${query} A user provides an initial prompt (query). Your task is to take this initial prompt and improve it. You should refer to an example prompt that was given at the start as a guide to understand the style and structure of a well-formed prompt. Additionally, you have access to some relevant documents (relevantDocs) that might help in making the prompt better. Once you have improved the prompt, please suggest suitable Stable Diffusion models that can be used with this enhanced prompt." ${relevantDocs}`;
 
+    if (!searchResponse || !searchResponse.length) {
+      return res.json({ response: "No relevant documents found for the query." });
+    }
+
+    const relevantDocs = searchResponse.map(doc => doc.payload.content).join("\n\n");
+
+    const modelQuery = `
+   Below is the query that user has entered  
+
+    "${query}"
+
+   below is the relevant prompts that is retrieved from our database
+
+    ${relevantDocs}
+you need to generate a stable diffusion prompt (image generation),i am giving you a example cute cat is walking on the floor photography, Natural geographic photo, Hyper-realistic, 16k resolution, (masterpiece, award winning artwork), many details, extreme detailed, full of details, Wide range of colors, high Dynamic
+   please use this is a reference and generate the prompt structure should be like the given example
+    `;
+console.log(relevantDocs);
     let responseText = '';
     const stream = await ollama.generate({ model: mainmodel, prompt: modelQuery, stream: true });
 
@@ -51,7 +72,7 @@ app.post("/process-query", async (req, res) => {
     res.json({ response: responseText });
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).send('Error processing your request');
+    res.status(500).json({ error: 'Error processing your request', details: error.message });
   }
 });
 

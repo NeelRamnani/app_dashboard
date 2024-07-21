@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import loadingGif from '../assets/neel.gif'; // Adjust the path to your GIF file
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+
 const PromptSuggest = () => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState(null);
@@ -17,6 +19,14 @@ const PromptSuggest = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    // Check if the userInput has at least 3 words
+    const wordCount = userInput.trim().split(/\s+/).length;
+    if (wordCount < 3) {
+      toast.error('Please enter at least 3 words for prompt suggestion.');
+      return;
+    }
+
     const data = { ...dataTemplate, query: userInput }; // Directly use userInput as query
 
     setLoading(true); // Start loading
@@ -32,6 +42,7 @@ const PromptSuggest = () => {
       setResponse(result.data);
     } catch (error) {
       console.error('Error:', error.response ? error.response.data : error.message);
+      toast.error('Error processing your request.'); // Use toast for error
       setResponse({ error: error.response ? error.response.data : error.message });
     } finally {
       setLoading(false); // Stop loading
@@ -46,6 +57,7 @@ const PromptSuggest = () => {
         })
         .catch(err => {
           console.error('Failed to copy: ', err);
+          toast.error('Failed to copy response.'); // Use toast for copy error
         });
     }
   };
@@ -58,11 +70,6 @@ const PromptSuggest = () => {
             <div className="generation_header">
               <div className="header_top">
                 <h1 className="title">Prompt Suggestion</h1>
-                {/* <div className="setup">
-                  <a href="#" className="sidebar__trigger">
-                    <img src="svg/option.svg" alt="option" className="fn__svg" />
-                  </a>
-                </div> */}
               </div>
               <div className="header_bottom">
                 <div className="include_area">
