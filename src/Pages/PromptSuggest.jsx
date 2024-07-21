@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import loadingGif from '../assets/neel.gif'; // Adjust the path to your GIF file
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+import 'react-toastify/dist/ReactToastify.css';
 
 const PromptSuggest = () => {
   const [userInput, setUserInput] = useState('');
   const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState(false); // New state for loading
+  const [loading, setLoading] = useState(false);
 
   const dataTemplate = {
-    query: "" // The key should match what the backend expects
+    query: ""
   };
 
   const handleInputChange = (event) => {
@@ -20,32 +20,31 @@ const PromptSuggest = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    // Check if the userInput has at least 3 words
     const wordCount = userInput.trim().split(/\s+/).length;
     if (wordCount < 3) {
       toast.error('Please enter at least 3 words for prompt suggestion.');
       return;
     }
 
-    const data = { ...dataTemplate, query: userInput }; // Directly use userInput as query
+    const data = { ...dataTemplate, query: userInput };
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
       const result = await axios.post('http://localhost:4000/process-query', data, {
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json' // Ensure the server responds with JSON
+          'Accept': 'application/json'
         }
       });
 
       setResponse(result.data);
     } catch (error) {
       console.error('Error:', error.response ? error.response.data : error.message);
-      toast.error('Error processing your request.'); // Use toast for error
+      toast.error('Error processing your request.');
       setResponse({ error: error.response ? error.response.data : error.message });
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -57,7 +56,7 @@ const PromptSuggest = () => {
         })
         .catch(err => {
           console.error('Failed to copy: ', err);
-          toast.error('Failed to copy response.'); // Use toast for copy error
+          toast.error('Failed to copy response.');
         });
     }
   };
@@ -83,35 +82,91 @@ const PromptSuggest = () => {
                   <textarea className="fn__hidden_textarea" rows={1} tabIndex={-1} defaultValue={""} />
                 </div>
                 <div className="generate_section">
-                  <label className="fn__toggle">
-                  </label>
                   <button 
                     id="generate_it" 
                     className="ImaginAi_fn_button" 
                     onClick={handleSubmit}
-                    disabled={loading} // Disable button while loading
+                    disabled={loading}
                   >
-                    {loading ? 'Generating...' : 'Generate'} {/* Change button text based on loading state */}
+                    {loading ? 'Generating...' : 'Generate'}
                   </button>
                 </div>
               </div>
             </div>
             {loading && (
               <div className="loading-spinner">
-                <img src={loadingGif} alt="Loading..." /> {/* Display GIF while loading */}
+                <img src={loadingGif} alt="Loading..." />
               </div>
             )}
             {response && !loading && (
-              <div className="response">
-                <h2>Response:</h2>
-                <pre>{JSON.stringify(response, null, 2)}</pre>
-                <button onClick={handleCopy}>Copy</button>
+              <div className="response-container">
+                <h2 className='sug'>Suggested Prompt:</h2>
+                <br></br>
+                <div className="response-content">
+                  <p>{response.response}</p>
+                </div>
+                <br></br>
+                <button className="copy-button" onClick={handleCopy}>
+                  Copy to Clipboard
+                </button>
               </div>
             )}
           </div>
         </div>
-        <div><ToastContainer/></div>
+        <ToastContainer />
       </div>
+      <style jsx>{`
+        .response-container {
+          margin-top: 20px;
+          padding: 20px;
+          width:90%;
+          margin-left:70px;
+          background-color:transparent;
+          border-radius: 8px;
+        }
+.sug{
+font-size:23px;}
+        .response-content {
+           background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%);
+        color:white;
+          padding: 15px;
+          border-radius: 5px;
+          margin-bottom: 0px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+               
+        
+         .copy-button {
+            background-image: linear-gradient(to left, #000000 15%, #53346D  51%, #000000  100%);
+            margin: 0px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+          
+            border-radius: 10px;
+            display: block;
+          }
+
+          .copy-button:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+         
+         
+         
+      
+
+        .loading-spinner img {
+          width: 150px;
+          height: 150px;
+        }
+      `}</style>
     </div>
   );
 };
