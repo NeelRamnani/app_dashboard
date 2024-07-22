@@ -17,7 +17,7 @@ const ImageGenerate = () => {
     steps: 30,
   });
   
-  const apiKey = "vk-uAA77DgHwOddCU131Ke42kuIYfw8TFABt0VaKB9byAzKq";
+  const apiKey = "vk-ase8wHuOsIKcWq32oLt0MrirtMI9LRJIymqAlDDPVm45w";
 
   const styleOptions = Object.entries(GenerationStyle).map(([key, value]) => ({
     id: value,
